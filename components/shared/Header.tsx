@@ -6,11 +6,16 @@ const Header = () => {
     <header>
       <div className="py-6 border-b bg-slate-800 border-slate-700">
         <div className="container">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center space-x-4 md:space-x-0">
             {/* Brand */}
             <Link href="/">
               <a className="inline shrink-0">
-                <img src={"/logo.png"} width={48} height={48} />
+                <img
+                  src={"/logo.png"}
+                  alt="Twitch Followings Logo"
+                  width={48}
+                  height={48}
+                />
               </a>
             </Link>
 

@@ -30,7 +30,7 @@ const UserProfileSection: React.FC<UserProps> = ({ login }) => {
     return <span className="block text-center">User not found!</span>;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       <UserProfileCard user={user.data} />
       <Suspense fallback={<SpinnerLoading />}>
         <UserFollowings id={user.data.id} />

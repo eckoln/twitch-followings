@@ -1,3 +1,4 @@
+import BuyMeACoffee from "components/shared/BuyMeACoffee";
 import Footer from "components/shared/Footer";
 import Header from "components/shared/Header";
 
@@ -11,6 +12,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       <Header />
       <main className="flex flex-col flex-1">{props.children}</main>
       <Footer />
+      <BuyMeACoffee />
     </div>
   );
 };
