@@ -18,15 +18,18 @@ type DataProps = {
   data: IUser;
 };
 
-const fetcher: Fetcher<DataProps, any[]> = (...args) =>
-  fetch(...args).then((res) => res.json());
+const fetcher = (args: string) => fetch(args).then((res) => res.json());
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
-  const { data: user } = useSWR(`/api/users?login=${login}`, fetcher, {
-    suspense: true,
-    revalidateOnMount: true,
-    revalidateOnFocus: false,
-  });
+  const { data: user } = useSWR(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/users?login=${login}`,
+    fetcher,
+    {
+      suspense: true,
+      revalidateOnMount: true,
+      revalidateOnFocus: false,
+    }
+  );
 
   if (!user?.data)
     return <span className="block text-center">User not found!</span>;
