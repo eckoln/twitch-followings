@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 
 const UserProfileSection = dynamic(
   () => import("components/UserProfileSection"),
-  { suspense: true }
+  { ssr: false }
 );
 
 type UserProfileProps = {
@@ -19,15 +19,13 @@ type UserProfileProps = {
 const UserProfile: NextPage<UserProfileProps> = ({ login }) => {
   return (
     <>
-      <NextSeo title={`${login}'s following list`} />
+      <NextSeo title={`login's following list`} />
       <Layout>
         <div className="mt-12">
           <div className="container">
-            <ErrorBoundary fallback={<span>Error</span>}>
-              <Suspense fallback={<SpinnerLoading />}>
-                <UserProfileSection login={login} />
-              </Suspense>
-            </ErrorBoundary>
+            <Suspense fallback={<SpinnerLoading />}>
+              <UserProfileSection login={login} />
+            </Suspense>
           </div>
         </div>
       </Layout>

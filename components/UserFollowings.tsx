@@ -1,4 +1,3 @@
-import { IUser } from "types";
 import UserFollowingItem from "./UserFollowingItem";
 import useSWR from "swr";
 
@@ -6,22 +5,19 @@ type UserFollowingsProps = {
   id: string;
 };
 
-const fetcher = (args: string) => fetch(args).then((res) => res.json());
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
-  const { data: followings } = useSWR(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/users/follows?id=${id}`,
-    fetcher,
-    {
-      suspense: true,
-      revalidateOnMount: true,
-      revalidateOnFocus: false,
-    }
-  );
+  const { data: followings } = useSWR(`/api/users/follows?id=${id}`, fetcher, {
+    suspense: true,
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+  });
 
   if (!followings.data.total)
     return (
       <span className="block text-center">User not following someone!</span>
     );
+
   return (
     <div className="space-y-6">
       <>
