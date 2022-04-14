@@ -19,7 +19,7 @@ type UserProfileProps = {
 const UserProfile: NextPage<UserProfileProps> = ({ login }) => {
   return (
     <>
-      <NextSeo title={`login's following list`} />
+      <NextSeo title={`${login}'s following list`} />
       <Layout>
         <div className="mt-12">
           <div className="container">

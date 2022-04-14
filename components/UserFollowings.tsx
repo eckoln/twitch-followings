@@ -28,7 +28,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
     }
   );
 
-  if (!followings?.data)
+  if (!followings.data.items.length)
     return (
       <span className="block text-center">User not following someone!</span>
     );
