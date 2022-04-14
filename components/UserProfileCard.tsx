@@ -12,7 +12,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
       <div className="flex justify-center">
         <a
           href={`https://twitch.tv/${user.login}`}
-          className="flex flex-col items-center pb-8 space-y-6 group"
+          className="flex flex-col items-center pb-8 space-y-4 group"
         >
           <figure className="overflow-hidden w-28 h-28 bg-black rounded-full ring-2 ring-blue-400">
             <img
