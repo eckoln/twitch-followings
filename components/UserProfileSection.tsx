@@ -1,8 +1,14 @@
 import SpinnerLoading from "./shared/ui/SpinnerLoading";
 import { Suspense } from "react";
-import UserFollowings from "./UserFollowings";
 import UserProfileCard from "./UserProfileCard";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
+
+//import UserFollowings from "./UserFollowings";
+
+const UserFollowings = dynamic(() => import("./UserFollowings"), {
+  suspense: true,
+});
 
 type UserProps = {
   login: string;

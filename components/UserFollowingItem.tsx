@@ -2,6 +2,7 @@
 
 import { IUserFollowings } from "types";
 import Image from "next/image";
+import formatDate from "utils/formatDate";
 
 type UserFollowingItemProps = {
   data: IUserFollowings;
@@ -40,8 +41,8 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
           )}
         </figure>
         <div className="p-4 text-center">
-          <h5 className="text-lg font-bold break-words">{data.displayName}</h5>
-          <time className="text-gray-400">{data.followedAt}</time>
+          <h5 className="text-lg font-bold truncate">{data.displayName}</h5>
+          <time className="text-gray-400">{formatDate(data.followedAt)}</time>
         </div>
       </a>
     </div>
