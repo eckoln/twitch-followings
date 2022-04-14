@@ -10,7 +10,10 @@ const Footer = () => {
             </span>
             <span>
               Made by{" "}
-              <a href="#" className="transition hover:text-blue-400">
+              <a
+                href="https://twitch.tv/waithzer"
+                className="transition hover:text-blue-400"
+              >
                 <strong>Waithzer</strong>
               </a>
               .
