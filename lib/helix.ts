@@ -1,3 +1,5 @@
+import { IUserFromApi } from "types";
+
 class Helix {
   clientId: string | null;
   clientSecret: string | null;
@@ -77,13 +79,13 @@ class Helix {
     const res = await this.fetcher(
       `/users/follows?from_id=${id}&first=90&after=${cursor}`
     );
-    const followings = res.data.length ? res : null;
+    const followings = res.data.length > 0 ? res : null;
 
     return followings;
   }
 
   async getUserProfileImg(login: string | string[]) {
-    const user = await this.getUserByLogin(login);
+    const user: IUserFromApi = await this.getUserByLogin(login);
     const profileImgUrl = user.profile_image_url ?? "";
 
     return profileImgUrl;
