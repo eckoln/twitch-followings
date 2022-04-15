@@ -7,15 +7,15 @@ type UserFollowingsProps = {
   id: string;
 };
 
-type DataProps = {
+interface IData {
   data: {
     items: IUserFollowings[];
     total: number;
     cursor: string;
   };
-};
+}
 
-const fetcher: Fetcher<DataProps, string> = (args) =>
+const fetcher: Fetcher<IData, string> = (args) =>
   fetch(args).then((res) => res.json());
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {

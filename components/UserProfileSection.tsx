@@ -14,11 +14,11 @@ type UserProfileSectionProps = {
   login: string;
 };
 
-type DataProps = {
+interface IData {
   data: IUser;
-};
+}
 
-const fetcher: Fetcher<DataProps, string> = (args) =>
+const fetcher: Fetcher<IData, string> = (args) =>
   fetch(args).then((res) => res.json());
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
