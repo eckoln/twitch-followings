@@ -77,14 +77,14 @@ class Helix {
     const res = await this.fetcher(
       `/users/follows?from_id=${id}&first=90&after=${cursor}`
     );
-    const followings = res.total > 0 ? res : null;
+    const followings = res.data.length ? res : null;
 
     return followings;
   }
 
   async getUserProfileImg(login: string | string[]) {
     const user = await this.getUserByLogin(login);
-    const profileImgUrl = user?.profile_image_url ?? "";
+    const profileImgUrl = user.profile_image_url ?? "";
 
     return profileImgUrl;
   }

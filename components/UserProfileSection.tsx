@@ -18,7 +18,8 @@ type DataProps = {
   data: IUser;
 };
 
-const fetcher = (args: string) => fetch(args).then((res) => res.json());
+const fetcher: Fetcher<DataProps, string> = (args) =>
+  fetch(args).then((res) => res.json());
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
   const { data: user } = useSWR(
@@ -36,10 +37,10 @@ const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
 
   return (
     <div className="space-y-10">
-      <UserProfileCard user={user?.data} />
+      <UserProfileCard user={user.data} />
       {
         <Suspense fallback={<SpinnerLoading />}>
-          <UserFollowings id={user?.data.id} />
+          <UserFollowings id={user.data.id} />
         </Suspense>
       }
     </div>

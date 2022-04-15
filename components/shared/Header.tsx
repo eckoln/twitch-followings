@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 
@@ -9,7 +11,7 @@ const Header = () => {
           <div className="flex justify-between items-center space-x-4 md:space-x-0">
             {/* Brand */}
             <Link href="/">
-              <a className="inline shrink-0">
+              <a className="inline-flex w-12 h-12 shrink-0">
                 <img
                   src={"/logo.png"}
                   alt="Twitch Followings Logo"

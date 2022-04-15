@@ -15,7 +15,8 @@ type DataProps = {
   };
 };
 
-const fetcher = (args: string) => fetch(args).then((res) => res.json());
+const fetcher: Fetcher<DataProps, string> = (args) =>
+  fetch(args).then((res) => res.json());
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   const { data: followings } = useSWR(
@@ -28,7 +29,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
     }
   );
 
-  if (!followings.data.items.length)
+  if (!followings?.data.items.length)
     return (
       <span className="block text-center">User not following someone!</span>
     );
