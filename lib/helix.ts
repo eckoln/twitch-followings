@@ -86,7 +86,7 @@ class Helix {
 
   async getUserProfileImg(login: string | string[]) {
     const user: IUserFromApi = await this.getUserByLogin(login);
-    const profileImgUrl = user.profile_image_url ?? "";
+    const profileImgUrl = user?.profile_image_url ?? "";
 
     return profileImgUrl;
   }

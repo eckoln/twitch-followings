@@ -6,9 +6,10 @@ import { NextSeo } from "next-seo";
 import SpinnerLoading from "components/shared/ui/SpinnerLoading";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
-const UserProfileSection = dynamic(
-  () => import("components/UserProfileSection"),
+const UserProfileContainer = dynamic(
+  () => import("components/UserProfileContainer"),
   { ssr: false }
 );
 
@@ -16,15 +17,17 @@ type UserProfileProps = {
   login: string;
 };
 
-const UserProfile: NextPage<UserProfileProps> = ({ login }) => {
+const UserProfile: NextPage<UserProfileProps> = () => {
+  const router = useRouter();
+  const { login } = router.query;
+  //console.log(login);
   return (
     <>
-      <NextSeo title={`${login}'s following list`} />
       <Layout>
         <div className="mt-12">
           <div className="container">
             <Suspense fallback={<SpinnerLoading />}>
-              <UserProfileSection login={login} />
+              <UserProfileContainer login={login} />
             </Suspense>
           </div>
         </div>
@@ -33,10 +36,10 @@ const UserProfile: NextPage<UserProfileProps> = ({ login }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+/* export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { login } = ctx.query;
 
   return { props: { login: login?.toString().toLocaleLowerCase() } };
-};
+}; */
 
 export default UserProfile;

@@ -1,6 +1,7 @@
 import useSWR, { Fetcher } from "swr";
 
 import { IUser } from "types";
+import { NextSeo } from "next-seo";
 import SpinnerLoading from "./shared/ui/SpinnerLoading";
 import { Suspense } from "react";
 import UserProfileCard from "./UserProfileCard";
@@ -11,7 +12,7 @@ const UserFollowings = dynamic(() => import("components/UserFollowings"), {
 });
 
 type UserProfileSectionProps = {
-  login: string;
+  login: string | string[] | undefined;
 };
 
 interface IData {
@@ -36,14 +37,17 @@ const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
     return <span className="block text-center">User not found!</span>;
 
   return (
-    <div className="space-y-10">
-      <UserProfileCard user={user.data} />
-      {
-        <Suspense fallback={<SpinnerLoading />}>
-          <UserFollowings id={user.data.id} />
-        </Suspense>
-      }
-    </div>
+    <>
+      <NextSeo title={`${login}'s following list`} />
+      <div className="space-y-10">
+        <UserProfileCard user={user.data} />
+        {
+          <Suspense fallback={<SpinnerLoading />}>
+            <UserFollowings id={user.data.id} />
+          </Suspense>
+        }
+      </div>
+    </>
   );
 };
 
