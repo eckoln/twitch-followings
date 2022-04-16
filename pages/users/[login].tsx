@@ -1,8 +1,5 @@
-import { GetServerSideProps, NextPage } from "next";
-
-import { ErrorBoundary } from "react-error-boundary";
 import Layout from "components/layouts/Layout";
-import { NextSeo } from "next-seo";
+import { NextPage } from "next";
 import SpinnerLoading from "components/shared/ui/SpinnerLoading";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
@@ -20,7 +17,7 @@ type UserProfileProps = {
 const UserProfile: NextPage<UserProfileProps> = () => {
   const router = useRouter();
   const { login } = router.query;
-  //console.log(login);
+
   return (
     <>
       <Layout>
@@ -35,11 +32,5 @@ const UserProfile: NextPage<UserProfileProps> = () => {
     </>
   );
 };
-
-/* export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { login } = ctx.query;
-
-  return { props: { login: login?.toString().toLocaleLowerCase() } };
-}; */
 
 export default UserProfile;

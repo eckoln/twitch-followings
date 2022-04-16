@@ -1,6 +1,6 @@
-type DateFormatterProps = string | number | Date;
+type FormatDateProps = string | number | Date;
 
-const dateFormatter = (date: DateFormatterProps) => {
+const formatDate = (date: FormatDateProps) => {
   return new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
@@ -8,4 +8,4 @@ const dateFormatter = (date: DateFormatterProps) => {
   });
 };
 
-export default dateFormatter;
+export default formatDate;
