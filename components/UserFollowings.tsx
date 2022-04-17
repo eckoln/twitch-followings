@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useInfiniteQuery } from "react-query";
 
 import { IUserFollowings } from "types";
