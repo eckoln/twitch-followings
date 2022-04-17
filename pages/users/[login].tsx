@@ -24,7 +24,7 @@ const UserProfile: NextPage<UserProfileProps> = () => {
         <div className="mt-12">
           <div className="container">
             <Suspense fallback={<SpinnerLoading />}>
-              <UserProfileContainer login={login} />
+              <UserProfileContainer login={login?.toString().toLowerCase()} />
             </Suspense>
           </div>
         </div>

@@ -1,7 +1,10 @@
-import useSWR, { Fetcher } from "swr";
+import { useInfiniteQuery } from "react-query";
 
 import { IUserFollowings } from "types";
+import Button from "./shared/ui/Button";
 import UserFollowingItem from "./UserFollowingItem";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 type UserFollowingsProps = {
   id: string;
@@ -15,36 +18,68 @@ interface IData {
   };
 }
 
-const fetcher: Fetcher<IData, string> = (args) =>
-  fetch(args).then((res) => res.json());
+const fetcher = async (id: string, cursor = "") => {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_APP_URL +
+      `/api/users/follows?id=${id}&cursor=${cursor}`
+  );
+  const data = await res.json();
+
+  return data;
+};
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
-  const { data: followings } = useSWR(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/users/follows?id=${id}`,
-    fetcher,
-    {
-      suspense: true,
-      revalidateOnMount: true,
-      revalidateOnFocus: false,
-    }
-  );
+  const { ref, inView } = useInView();
 
-  if (!followings?.data.items.length)
-    return (
-      <span className="block text-center">User not following someone!</span>
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery(
+      ["followings", id],
+      ({ pageParam }) => fetcher(id, pageParam),
+      {
+        suspense: true,
+        refetchOnWindowFocus: false,
+        getNextPageParam: (lastPage) => lastPage.data.cursor,
+      }
     );
+  const isFollowing = data?.pages?.[0].data.items.length;
+  const total = data?.pages?.[0].data.total;
+
+  useEffect(() => {
+    if (inView) {
+      if (!hasNextPage) return;
+
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  if (!isFollowing) return <p>user not following someone.</p>;
 
   return (
     <div className="space-y-6">
       <>
         <span>
-          User is followings <strong>{followings.data.total}</strong> channels:
+          User is followings <strong>{total}</strong> channels:
         </span>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
-          {followings.data.items.map((item: any, index: number) => (
-            <UserFollowingItem key={index} data={item} />
-          ))}
+          {data.pages.map((group, i) =>
+            group.data.items.map((item) => (
+              <UserFollowingItem key={i} data={item} />
+            ))
+          )}
         </div>
+        {hasNextPage && (
+          <div ref={ref}>
+            <p>Keeping scroll for more...</p>
+          </div>
+        )}
+        {/* <Button
+          ref={ref}
+          variant="primary"
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage}
+        >
+          Load More
+        </Button> */}
       </>
     </div>
   );

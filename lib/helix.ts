@@ -39,7 +39,7 @@ class Helix {
   async refreshAccessToken() {
     const refreshedToken = await this.getAccessToken();
     this.accessToken = refreshedToken;
-    console.log(`token refreshed: ${refreshedToken}`);
+    console.log("token refreshed:", refreshedToken);
   }
 
   /* FETCH */
@@ -59,7 +59,7 @@ class Helix {
         console.log("Code: 401 Unauthorized Request!");
 
         await this.refreshAccessToken();
-        return this.fetcher(endpoint);
+        return await this.fetcher(endpoint);
       }
 
       return data;

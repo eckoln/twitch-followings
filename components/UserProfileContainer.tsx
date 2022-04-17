@@ -6,6 +6,7 @@ import SpinnerLoading from "./shared/ui/SpinnerLoading";
 import { Suspense } from "react";
 import UserProfileCard from "./UserProfileCard";
 import dynamic from "next/dynamic";
+import { useQuery } from "react-query";
 
 const UserFollowings = dynamic(() => import("components/UserFollowings"), {
   ssr: false,
@@ -19,21 +20,22 @@ interface IData {
   data: IUser;
 }
 
-const fetcher: Fetcher<IData, string> = (args) =>
-  fetch(args).then((res) => res.json());
+const fetcher = async (login: string | string[] | undefined) => {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_APP_URL + `/api/users?login=${login}`
+  );
+  const data = await res.json();
+
+  return data;
+};
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
-  const { data: user } = useSWR(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/users?login=${login}`,
-    fetcher,
-    {
-      suspense: true,
-      revalidateOnMount: true,
-      revalidateOnFocus: false,
-    }
-  );
+  const { data: user } = useQuery(["user", login], () => fetcher(login), {
+    suspense: true,
+    refetchOnWindowFocus: false,
+  });
 
-  if (!user?.data)
+  if (!user.data)
     return <span className="block text-center">User not found!</span>;
 
   return (
@@ -41,11 +43,9 @@ const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
       <NextSeo title={`${login}'s following list`} />
       <div className="space-y-10">
         <UserProfileCard user={user.data} />
-        {
-          <Suspense fallback={<SpinnerLoading />}>
-            <UserFollowings id={user.data.id} />
-          </Suspense>
-        }
+        <Suspense fallback={<SpinnerLoading />}>
+          <UserFollowings id={user.data.id} />
+        </Suspense>
       </div>
     </>
   );
