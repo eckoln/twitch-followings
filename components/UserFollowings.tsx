@@ -19,13 +19,12 @@ interface IData {
   };
 }
 
-const fetcher = async (id: string, cursor = "") => {
+const fetcher = async (id: string, cursor?: string) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL +
-      `/api/users/follows?id=${id}&cursor=${cursor}`
+      `/api/users/follows?id=${id}&cursor=${cursor ?? ""}`
   );
   const data = await res.json();
-
   return data;
 };
 
@@ -37,13 +36,11 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
       ["followings", id],
       ({ pageParam }) => fetcher(id, pageParam),
       {
-        suspense: true,
-        refetchOnWindowFocus: false,
         getNextPageParam: (lastPage) => lastPage.data.cursor,
       }
     );
   const isFollowing = data?.pages?.[0].data.items.length;
-  const total = data?.pages?.[0].data.total;
+  const totalFollowings = data?.pages?.[0].data.total;
 
   useEffect(() => {
     if (inView) {
@@ -52,13 +49,14 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
     }
   }, [inView]);
 
-  if (!isFollowing) return <p>user not following someone.</p>;
+  if (!isFollowing)
+    return <p className="text-center">User not following someone!</p>;
 
   return (
     <div className="space-y-6">
       <>
         <span>
-          User is followings <strong>{total}</strong> channels:
+          User is followings <strong>{totalFollowings}</strong> channels:
         </span>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
           {data.pages.map((group, i) =>
@@ -69,7 +67,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
         </div>
         {hasNextPage && (
           <div ref={ref}>
-            <p>Keeping scroll for more...</p>
+            <p className="text-center">Keeping scroll for more...</p>
           </div>
         )}
       </>

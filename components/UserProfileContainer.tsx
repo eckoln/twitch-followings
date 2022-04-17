@@ -1,5 +1,3 @@
-import useSWR, { Fetcher } from "swr";
-
 import { IUser } from "types";
 import { NextSeo } from "next-seo";
 import SpinnerLoading from "./shared/ui/SpinnerLoading";
@@ -30,12 +28,9 @@ const fetcher = async (login: string | string[] | undefined) => {
 };
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
-  const { data: user } = useQuery(["user", login], () => fetcher(login), {
-    suspense: true,
-    refetchOnWindowFocus: false,
-  });
+  const { data: user } = useQuery<IData>(["user", login], () => fetcher(login));
 
-  if (!user.data)
+  if (!user?.data)
     return <span className="block text-center">User not found!</span>;
 
   return (
