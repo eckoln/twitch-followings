@@ -10,12 +10,13 @@ const formatFollowings = async (data: IUserFollowingsFromApi[]) => {
           id: item.to_id,
           login: item.to_login,
           displayName: item.to_name,
-          profileImageUrl: await api.getUserProfileImg(item.to_login),
+          profileImageUrl: await api.getUserProfileImg(item?.to_login),
           followedAt: item.followed_at,
         };
       })
     );
   }
+  //return data;
 };
 
 export default formatFollowings;
