@@ -47,7 +47,6 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   useEffect(() => {
     if (inView) {
       if (!hasNextPage) return;
-
       fetchNextPage();
     }
   }, [inView]);
@@ -72,14 +71,6 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
             <p>Keeping scroll for more...</p>
           </div>
         )}
-        {/* <Button
-          ref={ref}
-          variant="primary"
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage}
-        >
-          Load More
-        </Button> */}
       </>
     </div>
   );
