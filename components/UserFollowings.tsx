@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from "react-query";
 
 import { IUserFollowings } from "types";
-import Button from "./shared/ui/Button";
 import UserFollowingItem from "./UserFollowingItem";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -61,7 +60,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
         </span>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
           {data.pages.map((group, i) =>
-            group.data.items.map((item) => (
+            group.data.items.map((item: IUserFollowings) => (
               <UserFollowingItem key={i} data={item} />
             ))
           )}
