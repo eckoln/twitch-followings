@@ -13,14 +13,13 @@ const Header = () => {
             <Link href="/">
               <a className="inline-flex w-12 h-12 shrink-0">
                 <img
-                  src={"/logo.png"}
+                  src="/logo.png"
                   alt="Twitch Followings Logo"
-                  width={48}
-                  height={48}
+                  width="48"
+                  height="48"
                 />
               </a>
             </Link>
-
             {/* SearchBar */}
             <SearchBar />
           </div>

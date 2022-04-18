@@ -22,9 +22,7 @@ const fetcher = async (login: string | string[] | undefined) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL + `/api/users?login=${login}`
   );
-  const data = await res.json();
-
-  return data;
+  return res.json();
 };
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {

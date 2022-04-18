@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { IUserFollowings } from "types";
-import Image from "next/image";
 import formatDate from "utils/formatDate";
 
 type UserFollowingItemProps = {
@@ -16,29 +15,12 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
         className="block w-full h-full"
       >
         <figure className="w-full h-auto">
-          {/* <img
-            src={data.profileImageUrl ?? "non-avatar-300x300.png"}
-            alt=""
-            width={"100%"}
-            height={"100%"}
-          /> */}
-          {data.profileImageUrl ? (
-            <Image
-              src={data.profileImageUrl}
-              alt=""
-              width="100%"
-              height="100%"
-              layout="responsive"
-            />
-          ) : (
-            <Image
-              src={"/non-avatar-300x300.png"}
-              alt=""
-              width="100%"
-              height="100%"
-              layout="responsive"
-            />
-          )}
+          <img
+            src={data.profileImageUrl || "/non-avatar-300x300.png"}
+            alt={`${data.login}'s Profile Image`}
+            width="100%"
+            height="100%"
+          />
         </figure>
         <div className="p-4 text-center">
           <h5 className="text-lg font-bold truncate">{data.displayName}</h5>

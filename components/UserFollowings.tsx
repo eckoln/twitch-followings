@@ -22,10 +22,9 @@ interface IData {
 const fetcher = async (id: string, cursor?: string) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL +
-      `/api/users/follows?id=${id}&cursor=${cursor ?? ""}`
+      `/api/users/follows?id=${id}&cursor=${cursor || ""}`
   );
-  const data = await res.json();
-  return data;
+  return res.json();
 };
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
@@ -59,9 +58,9 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
           User is followings <strong>{totalFollowings}</strong> channels:
         </span>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
-          {data.pages.map((group, i) =>
-            group.data.items.map((item: IUserFollowings) => (
-              <UserFollowingItem key={i} data={item} />
+          {data.pages.map((group) =>
+            group.data.items.map((item: IUserFollowings, index: number) => (
+              <UserFollowingItem key={index} data={item} />
             ))
           )}
         </div>

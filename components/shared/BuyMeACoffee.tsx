@@ -9,7 +9,12 @@ const BuyMeACoffee = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <img src="/bmc-logo.svg" alt="" width="30px" height="auto" />
+        <img
+          src="/bmc-logo.svg"
+          alt="Buy Me a Coffee"
+          width="30"
+          height="auto"
+        />
       </a>
     </div>
   );
