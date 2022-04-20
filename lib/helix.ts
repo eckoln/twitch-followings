@@ -70,7 +70,7 @@ class Helix {
 
   async getUserByLogin(login: string | string[]) {
     const res = await this.fetcher(`/users?login=${login}`);
-    const user = res.data[0] ?? null;
+    const user = res?.data[0] || null;
 
     return user;
   }
@@ -86,7 +86,7 @@ class Helix {
 
   async getUserProfileImg(login: string | string[]) {
     const user: IUserFromApi = await this.getUserByLogin(login);
-    const profileImgUrl = user?.profile_image_url ?? "";
+    const profileImgUrl = user?.profile_image_url || "";
 
     return profileImgUrl;
   }

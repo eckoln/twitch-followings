@@ -21,10 +21,12 @@ const Footer = () => {
           <div className="flex flex-col items-center space-y-4 text-center text-gray-400 md:flex-row md:justify-between md:space-y-0">
             <div>
               <span className="flex items-center">
-                Released on the{" "}
+                Coming soon on the
                 <a
-                  href="#"
+                  href="https://github.com/armedo/twitch-followings"
                   className="inline-flex ml-2 font-bold transition hover:text-blue-400"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <span>
                     <GithubSVG className="mr-2 w-6 h-6" />
@@ -40,6 +42,8 @@ const Footer = () => {
                 <a
                   href="https://twitch.tv/waithzer"
                   className="transition hover:text-blue-400"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <strong>Waithzer</strong>
                 </a>
