@@ -13,20 +13,22 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
         <a
           href={`https://twitch.tv/${user.login}`}
           className="flex flex-col items-center pb-8 space-y-4 group"
+          target="_blank"
+          rel="noreferrer"
         >
           <figure className="overflow-hidden w-28 h-28 bg-black rounded-full ring-2 ring-blue-400">
             <img
               src={user.profileImageUrl ?? "/non-avatar-300x300.png"}
-              alt=""
+              alt={`${user.login}'s Profile Image`}
               width={112}
               height={112}
             />
           </figure>
           <div className="text-center">
-            <h3 className="text-xl font-bold transition group-hover:text-blue-400">
+            <h4 className="text-xl font-bold transition group-hover:text-blue-400">
               {user.displayName}
-            </h3>
-            <span className="text-gray-400">{`https://twitch.tv/${user.login}`}</span>
+            </h4>
+            <span className="text-gray-400">{`twitch.tv/${user.login}`}</span>
           </div>
         </a>
       </div>

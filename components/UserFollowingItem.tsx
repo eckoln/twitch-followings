@@ -13,6 +13,8 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
       <a
         href={`https://twitch.tv/${data.login}`}
         className="block w-full h-full"
+        target="_blank"
+        rel="noreferrer"
       >
         <figure className="w-full h-auto">
           <img
