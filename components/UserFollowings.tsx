@@ -34,10 +34,11 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   const isFollowing = data?.pages?.[0].data?.items.length;
   const totalFollowings = data?.pages?.[0].data?.total;
 
+  //sonraki sayfayı çekmek için referansı izlemeye al
   useEffect(() => {
     if (inView) {
-      if (!hasNextPage) return;
-      fetchNextPage();
+      if (!hasNextPage) return; //sonraki sayfa yoksa çalışna
+      fetchNextPage(); //sonraki sayfayı çek
     }
   }, [inView]);
 
@@ -60,7 +61,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
           </React.Fragment>
         ))}
       </div>
-      {hasNextPage && (
+      {hasNextPage && ( //sonraki sayfa
         <div ref={ref}>
           <p className="text-center">Keeping scroll for more...</p>
         </div>
