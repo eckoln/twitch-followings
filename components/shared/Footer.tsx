@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="flex flex-col items-center space-y-4 text-center text-gray-400 md:flex-row md:justify-between md:space-y-0">
             <div>
               <span className="flex items-center">
-                Coming soon on the
+                Open Source on the
                 <a
                   href="https://github.com/armedo/twitch-followings"
                   className="inline-flex ml-2 font-bold transition hover:text-blue-400"

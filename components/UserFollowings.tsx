@@ -37,7 +37,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   //sonraki sayfayı çekmek için referansı izlemeye al
   useEffect(() => {
     if (inView) {
-      if (!hasNextPage) return; //sonraki sayfa yoksa çalışna
+      if (!hasNextPage) return; //sonraki sayfa yoksa çalışma
       fetchNextPage(); //sonraki sayfayı çek
     }
   }, [inView]);
