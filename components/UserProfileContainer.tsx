@@ -11,25 +11,29 @@ const UserFollowings = dynamic(() => import("components/UserFollowings"), {
 });
 
 type UserProfileSectionProps = {
-  login: string | string[] | undefined;
+  login: string | undefined;
 };
 
 interface IData {
   data: IUser;
 }
 
-const fetcher = async (login: string | string[] | undefined) => {
+//react-query fetcher
+const fetcher = async (login: string | undefined) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL + `/api/users?login=${login}`
   );
-  return res.json();
+  const data = res.json();
+  return data;
 };
 
 const UserProfileSection: React.FC<UserProfileSectionProps> = ({ login }) => {
   const { data: user } = useQuery<IData>(["user", login], () => fetcher(login));
 
-  if (!user?.data)
+  //kullanıcı yoksa
+  if (!user?.data) {
     return <span className="block text-center">User not found!</span>;
+  }
 
   return (
     <>

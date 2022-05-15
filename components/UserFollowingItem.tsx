@@ -18,15 +18,15 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
       >
         <figure className="w-full h-auto">
           <img
-            src={data.profileImageUrl || "/non-avatar-300x300.png"}
+            src={data.profile_İmage_url || "/non-avatar-300x300.png"}
             alt={`${data.login}'s Profile Image`}
             width="100%"
             height="100%"
           />
         </figure>
         <div className="p-4 text-center">
-          <h5 className="text-lg font-bold truncate">{data.displayName}</h5>
-          <time className="text-gray-400">{formatDate(data.followedAt)}</time>
+          <h5 className="text-lg font-bold truncate">{data.display_name}</h5>
+          <time className="text-gray-400">{formatDate(data.followed_at)}</time>
         </div>
       </a>
     </div>

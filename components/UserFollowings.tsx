@@ -1,45 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { useInfiniteQuery } from "react-query";
-
 import { IUserFollowings } from "types";
+import React from "react";
 import UserFollowingItem from "./UserFollowingItem";
-import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from "react-query";
 
 type UserFollowingsProps = {
   id: string;
 };
 
-interface IData {
-  data: {
-    items: IUserFollowings[];
-    total: number;
-    cursor: string;
-  };
-}
-
+//react-query fetcher
 const fetcher = async (id: string, cursor?: string) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL +
       `/api/users/follows?id=${id}&cursor=${cursor || ""}`
   );
-  return res.json();
+  const data = res.json();
+  return data;
 };
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   const { ref, inView } = useInView();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery(
-      ["followings", id],
-      ({ pageParam }) => fetcher(id, pageParam),
-      {
-        getNextPageParam: (lastPage) => lastPage.data.cursor,
-      }
-    );
-  const isFollowing = data?.pages?.[0].data.items.length;
-  const totalFollowings = data?.pages?.[0].data.total;
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ["followings", id],
+    ({ pageParam }) => fetcher(id, pageParam),
+    {
+      getNextPageParam: (lastPage) => lastPage.data?.cursor,
+    }
+  );
+  const isFollowing = data?.pages?.[0].data?.items.length;
+  const totalFollowings = data?.pages?.[0].data?.total;
 
   useEffect(() => {
     if (inView) {
@@ -48,8 +41,10 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
     }
   }, [inView]);
 
-  if (!isFollowing)
+  //kimseyi takip etmiyorsa
+  if (!isFollowing) {
     return <p className="text-center">User not following someone!</p>;
+  }
 
   return (
     <div className="space-y-6">
@@ -57,11 +52,13 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
         User is followings <strong>{totalFollowings}</strong> channels:
       </span>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
-        {data.pages.map((group) =>
-          group.data.items.map((item: IUserFollowings, index: number) => (
-            <UserFollowingItem key={index} data={item} />
-          ))
-        )}
+        {data.pages.map((group, index) => (
+          <React.Fragment key={index}>
+            {group.data.items.map((item: IUserFollowings, index: number) => (
+              <UserFollowingItem key={index} data={item} />
+            ))}
+          </React.Fragment>
+        ))}
       </div>
       {hasNextPage && (
         <div ref={ref}>
