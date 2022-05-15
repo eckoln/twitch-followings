@@ -18,7 +18,7 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
       >
         <figure className="w-full h-auto">
           <img
-            src={data.profile_İmage_url || "/non-avatar-300x300.png"}
+            src={data.profile_image_url || "/non-avatar-300x300.png"}
             alt={`${data.login}'s Profile Image`}
             width="100%"
             height="100%"

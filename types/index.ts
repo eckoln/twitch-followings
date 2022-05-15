@@ -22,7 +22,7 @@ export interface IUserFollowings {
   id: string;
   login: string;
   display_name: string;
-  profile_İmage_url: string;
+  profile_image_url: string;
   followed_at: Date;
 }
 

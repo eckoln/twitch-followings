@@ -23,7 +23,7 @@ const formatFollowings = async (data: IFollows | null) => {
         id: item.to_id,
         login: item.to_login,
         display_name: item.to_name,
-        profile_İmage_url: await api.getUserProfileImageUrl(item.to_login),
+        profile_image_url: await api.getUserProfileImageUrl(item.to_login),
         followed_at: item.followed_at,
       };
     })
