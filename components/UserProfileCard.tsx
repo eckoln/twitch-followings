@@ -18,7 +18,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
         >
           <figure className="overflow-hidden w-28 h-28 bg-black rounded-full ring-2 ring-blue-400">
             <img
-              src={user.profileImageUrl ?? "/non-avatar-300x300.png"}
+              src={user.profile_image_url || "/non-avatar-300x300.png"}
               alt={`${user.login}'s Profile Image`}
               width={112}
               height={112}
@@ -26,7 +26,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
           </figure>
           <div className="text-center">
             <h4 className="text-xl font-bold transition group-hover:text-blue-400">
-              {user.displayName}
+              {user.display_name}
             </h4>
             <span className="text-gray-400">{`twitch.tv/${user.login}`}</span>
           </div>
