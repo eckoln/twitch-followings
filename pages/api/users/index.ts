@@ -6,6 +6,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import api from "lib/helix";
 import formatUser from "utils/formatUser";
 
+//özel karakterleri sil
+const fixedLogin = (login: string) => {
+  return login.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "");
+};
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { login } = req.query;
 
@@ -17,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const user = await api.getUserByLogin(login.toString());
+    const user = await api.getUserByLogin(fixedLogin(login.toString()));
     const formattedUser = formatUser(user); //twitchten gelen veriyi formatla
 
     //response

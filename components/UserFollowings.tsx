@@ -31,7 +31,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
       getNextPageParam: (lastPage) => lastPage.data?.cursor,
     }
   );
-  const isFollowing = data?.pages?.[0].data?.items.length;
+  const isFollowing = data?.pages?.[0].data?.items?.length;
   const totalFollowings = data?.pages?.[0].data?.total;
 
   //sonraki sayfayı çekmek için referansı izlemeye al
