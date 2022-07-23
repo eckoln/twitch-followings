@@ -1,23 +1,18 @@
 import React from "react";
 import clsx from "clsx";
 
-type InputProps = React.ComponentPropsWithRef<"input">;
+type InputProps = React.ComponentProps<"input">;
 
-const Input: React.FC<InputProps> = React.forwardRef(
-  ({ className, ...props }, ref) => {
-    return (
-      <input
-        ref={ref}
-        className={clsx(
-          "py-2 px-4 w-full placeholder-gray-400 rounded-md transition focus:outline-none bg-slate-700 focus:bg-slate-600",
-          [className]
-        )}
-        {...props}
-      />
-    );
-  }
-);
-
-Input.displayName = "Input";
+const Input: React.FC<InputProps> = ({ className, ...props }) => {
+  return (
+    <input
+      {...props}
+      className={clsx(
+        "w-full px-4 py-3 placeholder-gray-400 transition rounded-md focus:outline-none bg-slate-700 focus:bg-slate-600",
+        [className]
+      )}
+    />
+  );
+};
 
 export default Input;

@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -5,29 +6,26 @@ module.exports = {
   ],
   theme: {
     container: {
-      center: true,
-      padding: { DEFAULT: "2rem" },
       screens: {
-        xs: "100%",
-        xs: "540px",
-        md: "720px",
-        lg: "960px",
-        xl: "1140px",
-        "2xl": "1320px",
+        tablet: "720px",
+        laptop: "960px",
+        desktop: "1140px",
+      },
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        tablet: "0px",
       },
     },
-    extend: {
-      fontFamily: {
-        sans: ["'Roboto', sans-serif"],
-      },
+    screens: {
+      tablet: "768px",
+      laptop: "992px",
+      desktop: "1200px",
     },
-    screen: {
-      sm: "576px",
-      md: "768px",
-      lg: "992px",
-      xl: "1200px",
-      "2xl": "1400px",
+    fontFamily: {
+      sans: ["Mulish", "sans-serif"],
     },
+    extend: {},
   },
   plugins: [],
 };

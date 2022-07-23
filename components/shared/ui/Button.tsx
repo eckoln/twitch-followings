@@ -1,37 +1,33 @@
 import React from "react";
 import clsx from "clsx";
 
-enum ButtonVariant {
-  "primary",
-}
-
-type ButtonProps = React.ComponentPropsWithRef<"button"> & {
-  variant?: keyof typeof ButtonVariant;
+type ButtonProps = React.ComponentProps<"button"> & {
+  variant?: "primary";
 };
 
-const Button: React.FC<ButtonProps> = React.forwardRef(
-  ({ children, className, variant = "primary", ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        type="button"
-        className={clsx(
-          "inline-block py-2 px-4 text-center align-middle rounded-md transition font-semibold disabled:opacity-70 disabled:pointer-events-none",
-          [className],
-          [
-            variant === "primary" && [
-              "bg-purple-400 text-purple-900 hover:bg-purple-500",
-            ],
-          ]
-        )}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-);
-
-Button.displayName = "Button";
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className,
+  variant = "primary",
+  ...props
+}) => {
+  return (
+    <button
+      {...props}
+      type="button"
+      className={clsx(
+        "inline-block px-4 py-2 font-semibold text-center align-middle transition rounded-md disabled:opacity-70 disabled:pointer-events-none",
+        [className],
+        [
+          variant === "primary" && [
+            "bg-purple-400 text-purple-900 hover:bg-purple-500",
+          ],
+        ]
+      )}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;
