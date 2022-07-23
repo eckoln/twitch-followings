@@ -1,6 +1,9 @@
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Website";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 const APP_SEO = {
-  titleTemplate: `%s - ${process.env.NEXT_PUBLIC_APP_NAME}`,
-  defaultTitle: process.env.NEXT_PUBLIC_APP_NAME,
+  titleTemplate: `%s - ${APP_NAME}`,
+  defaultTitle: APP_NAME,
   description: `Twitch Followings, see list of all channels a Twitch user is following on Twitch.`,
   additionalMetaTags: [
     {
@@ -12,8 +15,8 @@ const APP_SEO = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_APP_URL,
-    site_name: process.env.NEXT_PUBLIC_APP_NAME,
+    url: APP_URL,
+    site_name: APP_NAME,
   },
   additionalLinkTags: [
     {
