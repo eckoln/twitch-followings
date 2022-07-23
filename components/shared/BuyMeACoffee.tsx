@@ -2,10 +2,10 @@
 
 const BuyMeACoffee = () => {
   return (
-    <div className="fixed bottom-7 right-8 z-50 bg-blue-400 rounded-full transition cursor-pointer md:bottom-14 md:right-16 hover:bg-blue-500">
+    <div className="fixed z-50 transition bg-blue-400 rounded-full cursor-pointer bottom-7 right-8 tablet:bottom-14 tablet:right-16 hover:bg-blue-500">
       <a
         href="https://www.buymeacoffee.com/waithzer"
-        className="flex justify-center items-center w-14 h-14"
+        className="flex items-center justify-center w-14 h-14"
         target="_blank"
         rel="noreferrer"
       >

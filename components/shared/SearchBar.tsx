@@ -19,10 +19,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
   };
 
   return (
-    <div className={clsx("w-full max-w-xs", [className])}>
+    <div className={clsx("w-full max-w-xs", className)}>
       <form onSubmit={handleSubmit}>
         <div className="relative">
-          <span className="absolute inset-y-0 flex items-center px-2 text-gray-400">
+          <span className="absolute inset-y-0 flex items-center px-2 text-gray-400 pointer-events-none cursor-text">
             <SearchIcon className="w-6 h-6" />
           </span>
           <Input

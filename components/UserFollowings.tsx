@@ -15,7 +15,7 @@ type UserFollowingsProps = {
 const fetcher = async (id: string, cursor?: string) => {
   const res = await fetch(
     process.env.NEXT_PUBLIC_APP_URL +
-      `/api/users/follows?id=${id}&cursor=${cursor || ""}`
+      `/api/users/follows?id=${id}&cursor=${cursor ?? ""}`
   );
   const data = res.json();
   return data;
@@ -37,8 +37,8 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   //sonraki sayfayı çekmek için referansı izlemeye al
   useEffect(() => {
     if (inView) {
-      if (!hasNextPage) return; //sonraki sayfa yoksa çalışma
-      fetchNextPage(); //sonraki sayfayı çek
+      if (!hasNextPage) return;
+      fetchNextPage();
     }
   }, [inView]);
 
@@ -52,7 +52,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
       <span>
         User is followings <strong>{totalFollowings}</strong> channels:
       </span>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 desktop:grid-cols-5 tablet:grid-cols-3">
         {data.pages.map((group, index) => (
           <React.Fragment key={index}>
             {group.data.items.map((item: IUserFollowings, index: number) => (
