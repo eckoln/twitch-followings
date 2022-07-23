@@ -8,8 +8,8 @@ const Input: React.FC<InputProps> = ({ className, ...props }) => {
     <input
       {...props}
       className={clsx(
-        "w-full px-4 py-3 placeholder-gray-400 transition rounded-md focus:outline-none bg-slate-700 focus:bg-slate-600",
-        [className]
+        "w-full px-4 py-3 placeholder-gray-400 transition rounded-xl focus:outline-none bg-slate-700 focus:bg-slate-600",
+        className
       )}
     />
   );
