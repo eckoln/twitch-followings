@@ -1,6 +1,6 @@
 import Spinner from "./Spinner";
 
-const SpinnerLoading: React.FC = () => {
+const SpinnerLoading = () => {
   return (
     <div className="flex justify-center">
       <Spinner />

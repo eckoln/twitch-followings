@@ -9,7 +9,7 @@ type UserFollowingItemProps = {
 
 const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
   return (
-    <div className="overflow-hidden rounded-md ring-1 ring-transparent transition bg-slate-800 hover:ring-blue-400">
+    <div className="overflow-hidden transition rounded-md ring-1 ring-transparent bg-slate-800 hover:ring-blue-400">
       <a
         href={`https://twitch.tv/${data.login}`}
         className="block w-full h-full"
@@ -18,7 +18,7 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
       >
         <figure className="w-full h-auto">
           <img
-            src={data.profile_image_url || "/non-avatar-300x300.png"}
+            src={data.profile_image_url ?? "/non-avatar-300x300.png"}
             alt={`${data.login}'s Profile Image`}
             width="100%"
             height="100%"
