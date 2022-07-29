@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import APP_SEO from "next-seo.config";
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
-import GoogleAnalytics from "lib/analytics";
+import GoogleAnalytics from "components/shared/GoogleAnalytics";
 import { useState } from "react";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -23,9 +23,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GoogleAnalytics
-        measurementId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}
-      />
+      <GoogleAnalytics id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <DefaultSeo {...APP_SEO} />
       <Component {...pageProps} />
     </QueryClientProvider>
