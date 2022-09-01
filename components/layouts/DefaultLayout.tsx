@@ -2,11 +2,11 @@ import BuyMeACoffee from "components/shared/BuyMeACoffee";
 import Footer from "components/shared/Footer";
 import Header from "components/shared/Header";
 
-type LayoutProps = {
+type DefaultLayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout: React.FC<LayoutProps> = (props) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
   return (
     <div id="wrapper" className="flex flex-col min-h-screen">
       <Header />
@@ -17,4 +17,4 @@ const Layout: React.FC<LayoutProps> = (props) => {
   );
 };
 
-export default Layout;
+export default DefaultLayout;

@@ -1,31 +1,34 @@
+import clsx from "clsx";
+
 const Footer = () => {
+  const linkStyle = clsx("transition-colors hover:text-blue-400");
   return (
-    <footer>
-      <div className="py-4 mt-12 border-t-2 border-t-slate-800">
-        <div className="container">
-          <div className="flex text-sm text-gray-400 tablet:flex-row tablet:items-center tablet:justify-between">
-            <div>
+    <footer className="mt-10 border-t-2 border-t-slate-800">
+      <div className="container">
+        <div className="flex flex-col items-center justify-center py-4 space-y-2 desktop:space-y-0 desktop:flex-row desktop:justify-between">
+          <ul className="flex flex-row space-x-6">
+            <li>
               <a
                 href="https://twitch.tv/waithzer"
-                rel="noopener noreferrer"
+                className={linkStyle}
                 target="_blank"
-                className="transition-colors hover:text-blue-400"
+                rel="noreferrer"
               >
                 Made by @waithzer
               </a>
-            </div>
-
-            <div>
+            </li>
+            <li>
               <a
                 href="https://github.com/armedo/twitch-followings"
-                rel="noopener noreferrer"
+                className={linkStyle}
                 target="_blank"
-                className="transition-colors hover:text-blue-400"
+                rel="noreferrer"
               >
-                Open source on Github.
+                Github
               </a>
-            </div>
-          </div>
+            </li>
+          </ul>
+          <p>We are not affiliated with Twitch.</p>
         </div>
       </div>
     </footer>

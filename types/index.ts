@@ -1,35 +1,6 @@
-export interface IUser {
-  id: string;
-  login: string;
-  display_name: string;
-  type: string;
-  broadcaster_type: string;
-  description: string;
-  profile_image_url: string;
-  offline_image_url: string;
-  view_count: number;
-  created_at: Date;
-}
+import type { inferProcedureInput, inferProcedureOutput } from "@trpc/server";
 
-export interface IUserFollowingsFromApi {
-  to_id: string;
-  to_login: string;
-  to_name: string;
-  followed_at: Date;
-}
+import type { AppRouter } from "server/routers/_app";
 
-export interface IUserFollowings {
-  id: string;
-  login: string;
-  display_name: string;
-  profile_image_url: string;
-  followed_at: Date;
-}
-
-export interface IFollows {
-  total: number;
-  data: IUserFollowingsFromApi[];
-  pagination: {
-    cursor: string;
-  };
-}
+export type User = inferProcedureOutput<AppRouter["users"]["show"]>;
+export type Followings = inferProcedureOutput<AppRouter["users"]["followings"]>;

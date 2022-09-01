@@ -22,9 +22,6 @@ module.exports = {
       laptop: "992px",
       desktop: "1200px",
     },
-    fontFamily: {
-      sans: ["Mulish", "sans-serif"],
-    },
     extend: {},
   },
   plugins: [],

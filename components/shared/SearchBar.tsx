@@ -1,5 +1,5 @@
 import Input from "./ui/Input";
-import { SearchIcon } from "@heroicons/react/solid";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
     e.preventDefault();
     if (!query) return;
 
-    router.push(`/users/${query}`);
+    router.push({ pathname: "/[login]", query: { login: query } });
     setQuery(null);
   };
 
@@ -22,8 +22,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
     <div className={clsx("w-full max-w-xs", className)}>
       <form onSubmit={handleSubmit}>
         <div className="relative">
-          <span className="absolute inset-y-0 flex items-center px-2 text-gray-400 pointer-events-none cursor-text">
-            <SearchIcon className="w-6 h-6" />
+          <span className="absolute inset-y-0 flex items-center pl-4 pointer-events-none cursor-text">
+            <MagnifyingGlassCircleIcon className="w-6 h-6" />
           </span>
           <Input
             type="text"
