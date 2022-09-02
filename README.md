@@ -2,11 +2,11 @@
 
 ###### Home
 
-![home](https://user-images.githubusercontent.com/16352856/187991589-e142126b-8975-4dcf-8829-d354bc71ba85.png)
+![home](https://user-images.githubusercontent.com/16352856/188114766-68e75e49-2cb3-42f8-80dd-a042a66b508f.png)
 
 ###### Profile
 
-![profile](https://user-images.githubusercontent.com/16352856/187991597-bf8834f3-f47e-465a-97e2-d0dfabc21dca.png)
+![profile](https://user-images.githubusercontent.com/16352856/188114794-9478c85d-5b50-42ef-b546-4aae50d45a9f.png)
 
 <h2>Tech-stacks</h2>
 
