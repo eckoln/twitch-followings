@@ -4,7 +4,7 @@ const BuyMeACoffee = () => {
   return (
     <div className="fixed z-50 transition bg-blue-400 rounded-full cursor-pointer bottom-7 right-8 tablet:bottom-14 tablet:right-16 hover:bg-blue-500">
       <a
-        href="https://www.buymeacoffee.com/waithzer"
+        href="https://www.buymeacoffee.com/eckoln"
         className="flex items-center justify-center w-14 h-14"
         target="_blank"
         rel="noreferrer"

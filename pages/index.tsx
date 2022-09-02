@@ -14,7 +14,7 @@ const Home = () => {
             <p>
               Twitch Followings, allows you to view who twitch.tv users are
               following with a nicer interface. It uses Twitch&apos;s official
-              API.
+              API and is an open-source project.
             </p>
             <SearchBar />
             <p className="text-sm font-medium">
