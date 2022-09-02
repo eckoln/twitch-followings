@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Followings } from "types";
 import Heading from "components/shared/ui/Heading";
 import formatDate from "utils/formatDate";
 

@@ -16,8 +16,6 @@ export const userRouter = t.router({
         });
       }
 
-      //console.log(user);
-
       return user;
     }),
   followings: t.procedure
@@ -28,12 +26,14 @@ export const userRouter = t.router({
       })
     )
     .query(async ({ ctx, input }) => {
+      // get user followings
       const followings = await ctx.twitchApi.getFollows({
         from_id: input.id,
         first: 100,
         after: input.cursor,
       });
 
+      // get user profile_image_url
       const userPIU = async (login: string): Promise<string | null> => {
         const res = await ctx.twitchApi.getUsers(login);
         const user = res.data[0];
@@ -44,6 +44,7 @@ export const userRouter = t.router({
         return piu;
       };
 
+      // generate user following list with profile_image_url
       const formatFollowings = async () => {
         if (!followings.data) return null;
 
@@ -60,15 +61,14 @@ export const userRouter = t.router({
           })
         );
       };
-      const formattedList = await formatFollowings();
-      const fixedList = formattedList?.filter((i) => i);
+      const formattedList = await formatFollowings(); // await list
+      const fixedList = formattedList?.filter((i) => i); // avoid null items
 
+      // return json
       return {
         items: fixedList,
         total: followings.total,
         cursor: followings.pagination?.cursor ?? null,
       };
-
-      //return null;
     }),
 });

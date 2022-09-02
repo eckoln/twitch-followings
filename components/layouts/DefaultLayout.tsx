@@ -6,11 +6,11 @@ type DefaultLayoutProps = {
   children: React.ReactNode;
 };
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
-    <div id="wrapper" className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex flex-col flex-1">{props.children}</main>
+      <main className="flex flex-col flex-1">{children}</main>
       <Footer />
       <BuyMeACoffee />
     </div>

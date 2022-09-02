@@ -5,9 +5,9 @@ import SearchBar from "components/shared/SearchBar";
 const Home = () => {
   return (
     <Layout>
-      <div className="m-auto">
+      <div className="mt-10 desktop:m-auto">
         <div className="container">
-          <div className="flex flex-col items-center max-w-lg space-y-6 text-center">
+          <div className="flex flex-col items-center justify-center space-y-6 text-center desktop:max-w-lg">
             <Heading variant="h1">
               👀 Enter a Twitch.tv user and to see who they are following.
             </Heading>

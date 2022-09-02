@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
           </span>
           <Input
             type="text"
-            className="pl-10"
+            className="pl-12"
             placeholder="Search for users..."
             value={query ?? ""}
             onChange={(e) => setQuery(e.target.value)}

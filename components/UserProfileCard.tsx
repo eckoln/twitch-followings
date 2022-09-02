@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import Heading from "./shared/ui/Heading";
+import Heading from "components/shared/ui/Heading";
 import { User } from "types";
 
 type UserProfileCardProps = {

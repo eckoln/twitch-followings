@@ -2,10 +2,11 @@ import clsx from "clsx";
 
 const Footer = () => {
   const linkStyle = clsx("transition-colors hover:text-blue-400");
+
   return (
     <footer className="mt-10 border-t-2 border-t-slate-800">
       <div className="container">
-        <div className="flex flex-col items-center justify-center py-4 space-y-2 desktop:space-y-0 desktop:flex-row desktop:justify-between">
+        <div className="flex flex-col items-center justify-center py-4 space-y-2 tablet:space-y-0 tablet:flex-row tablet:justify-between">
           <ul className="flex flex-row space-x-6">
             <li>
               <a

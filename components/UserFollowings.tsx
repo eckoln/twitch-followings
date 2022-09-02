@@ -21,26 +21,30 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   const isFollowing = followings.data?.pages?.[0].items?.length;
   const totalFollowings = followings.data?.pages?.[0].total;
 
+  // infinite scroll event
   const { ref, inView } = useInView();
+
   useEffect(() => {
     if (inView) {
-      if (!followings.hasNextPage) return;
+      if (!followings.hasNextPage) return; // don't work if is no next page
       followings.fetchNextPage();
     }
   }, [inView]);
 
+  // if loading the page
   if (!followings.data) {
     return <SpinnerLoading />;
   }
 
+  // if user is not following someone
   if (!isFollowing) {
-    return <p>User not following someone.</p>;
+    return <p>User is not following someone.</p>;
   }
 
   return (
     <div className="space-y-4">
       <p>
-        User is followings <strong>{totalFollowings}</strong> channels:
+        User is following <strong>{totalFollowings}</strong> channels:
       </p>
       <div className="grid grid-cols-1 gap-8 desktop:grid-cols-5 tablet:grid-cols-3">
         {followings.data.pages.map((group, index) => (
@@ -51,7 +55,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
           </React.Fragment>
         ))}
       </div>
-      {followings.hasNextPage && ( //sonraki sayfa
+      {followings.hasNextPage && ( // next page
         <div ref={ref} className="space-y-2">
           <p className="text-center">Keeping scroll for more...</p>
           {followings.isFetchingNextPage && <SpinnerLoading />}
