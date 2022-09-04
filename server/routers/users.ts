@@ -1,12 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { t } from "server/trpc";
+import twitchApi from "utils/twitchApi";
 import { z } from "zod";
 
 export const userRouter = t.router({
   show: t.procedure
     .input(z.object({ login: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const res = await ctx.twitchApi.getUsers(input.login);
+    .query(async ({ input }) => {
+      const res = await twitchApi.getUsers(input.login);
       const user = res.data[0];
 
       if (!user) {
@@ -27,7 +28,7 @@ export const userRouter = t.router({
     )
     .query(async ({ ctx, input }) => {
       // get user followings
-      const followings = await ctx.twitchApi.getFollows({
+      const followings = await twitchApi.getFollows({
         from_id: input.id,
         first: 100,
         after: input.cursor,
@@ -35,7 +36,7 @@ export const userRouter = t.router({
 
       // get user profile_image_url
       const userPIU = async (login: string): Promise<string | null> => {
-        const res = await ctx.twitchApi.getUsers(login);
+        const res = await twitchApi.getUsers(login);
         const user = res.data[0];
 
         if (!user) return null;
