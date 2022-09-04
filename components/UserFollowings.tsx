@@ -12,7 +12,7 @@ type UserFollowingsProps = {
 };
 
 const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
-  const followings = trpc.proxy.users.followings.useInfiniteQuery(
+  const followings = trpc.users.followings.useInfiniteQuery(
     { id: id },
     {
       getNextPageParam: (lastPage) => lastPage.cursor,
@@ -49,7 +49,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
       <div className="grid grid-cols-1 gap-8 desktop:grid-cols-5 tablet:grid-cols-3">
         {followings.data.pages.map((group, index) => (
           <React.Fragment key={index}>
-            {group.items?.map((item) => (
+            {group.items?.map((item: any) => (
               <UserFollowingItem key={item?.id} data={item} />
             ))}
           </React.Fragment>

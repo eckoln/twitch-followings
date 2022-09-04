@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 const UserProfile: NextPage = () => {
   const login = useRouter().query.login as string;
-  const user = trpc.proxy.users.show.useQuery({ login: login });
+  const user = trpc.users.show.useQuery({ login: login });
 
   if (user.error) {
     return <NextError statusCode={user.error.data?.httpStatus ?? 500} />;
