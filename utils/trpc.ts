@@ -1,5 +1,5 @@
 import type { AppRouter } from "server/routers/_app";
-import { setupTRPC } from "@trpc/next";
+import { createTRPCNext } from "@trpc/next";
 import superjson from "superjson";
 
 const getBaseUrl = () => {
@@ -13,7 +13,7 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
 
-export const trpc = setupTRPC<AppRouter>({
+export const trpc = createTRPCNext<AppRouter>({
   config({ ctx }) {
     return {
       /**
@@ -38,5 +38,5 @@ export const trpc = setupTRPC<AppRouter>({
   /**
    * @link https://trpc.io/docs/ssr
    **/
-  ssr: true,
+  ssr: false,
 });
