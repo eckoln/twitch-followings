@@ -15,7 +15,7 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
   const followings = trpc.users.followings.useInfiniteQuery(
     { id: id },
     {
-      getNextPageParam: (lastPage) => lastPage.cursor,
+      getNextPageParam: (lastPage: any) => lastPage.cursor,
     }
   );
   const isFollowing = followings.data?.pages?.[0].items?.length;
@@ -47,13 +47,15 @@ const UserFollowings: React.FC<UserFollowingsProps> = ({ id }) => {
         User is following <strong>{totalFollowings}</strong> channels:
       </p>
       <div className="grid grid-cols-1 gap-8 desktop:grid-cols-5 tablet:grid-cols-3">
-        {followings.data.pages.map((group, index) => (
-          <React.Fragment key={index}>
-            {group.items?.map((item: any) => (
-              <UserFollowingItem key={item?.id} data={item} />
-            ))}
-          </React.Fragment>
-        ))}
+        {followings.data.pages.map(
+          (group: { items: any[] }, index: React.Key | null | undefined) => (
+            <React.Fragment key={index}>
+              {group.items?.map((item: any) => (
+                <UserFollowingItem key={item?.id} data={item} />
+              ))}
+            </React.Fragment>
+          )
+        )}
       </div>
       {followings.hasNextPage && ( // next page
         <div ref={ref} className="space-y-2">
