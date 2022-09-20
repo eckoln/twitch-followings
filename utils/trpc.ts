@@ -1,3 +1,5 @@
+import { httpBatchLink, loggerLink } from "@trpc/client";
+
 import type { AppRouter } from "server/routers/_app";
 import { createTRPCNext } from "@trpc/next";
 import superjson from "superjson";
@@ -16,11 +18,27 @@ const getBaseUrl = () => {
 export const trpc = createTRPCNext<AppRouter>({
   config: ({ ctx }) => {
     return {
-      transformer: superjson,
-      url: `${getBaseUrl()}/api/trpc`,
       /**
-       * @link https://react-query-v3.tanstack.com/reference/QueryClient
-       **/
+       * @link https://trpc.io/docs/data-transformers
+       */
+      transformer: superjson,
+      /**
+       * @link https://trpc.io/docs/links
+       */
+      links: [
+        // adds pretty logs to your console in development and logs errors in production
+        /* loggerLink({
+          enabled: (opts) =>
+            process.env.NODE_ENV === 'development' ||
+            (opts.direction === 'down' && opts.result instanceof Error),
+        }), */
+        httpBatchLink({
+          url: `${getBaseUrl()}/api/trpc`,
+        }),
+      ],
+      /**
+       * @link https://react-query.tanstack.com/reference/QueryClient
+       */
       queryClientConfig: {
         defaultOptions: {
           queries: {
@@ -28,11 +46,10 @@ export const trpc = createTRPCNext<AppRouter>({
           },
         },
       },
+      /**
+       * @link https://trpc.io/docs/ssr
+       */
+      ssr: false,
     };
   },
-  /**
-   * If you want to use SSR, you need to use the server's full URL
-   * @link https://trpc.io/docs/ssr
-   **/
-  ssr: false,
 });
