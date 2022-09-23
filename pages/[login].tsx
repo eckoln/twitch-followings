@@ -9,8 +9,10 @@ import { trpc } from "utils/trpc";
 import { useRouter } from "next/router";
 
 const UserProfile: NextPage = () => {
-  const login = useRouter().query.login as string;
-  const user = trpc.users.show.useQuery({ login: login });
+  const router = useRouter();
+  const login = router.query.login as string;
+
+  const user = trpc.users.show.useQuery({ login });
 
   if (user.error) {
     return <NextError statusCode={user.error.data?.httpStatus ?? 500} />;
