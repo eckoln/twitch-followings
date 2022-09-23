@@ -1,5 +1,5 @@
 import Input from "./ui/Input";
-import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className }) => {
       <form onSubmit={handleSubmit}>
         <div className="relative">
           <span className="absolute inset-y-0 flex items-center pl-4 pointer-events-none cursor-text">
-            <MagnifyingGlassCircleIcon className="w-6 h-6" />
+            <MagnifyingGlassIcon className="w-6 h-6" />
           </span>
           <Input
             type="text"
