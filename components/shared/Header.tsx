@@ -10,15 +10,13 @@ const Header = () => {
         <div className="p-6 rounded-3xl bg-slate-800 border-slate-700">
           <div className="flex items-center justify-between space-x-4 tablet:space-x-0">
             {/* Brand */}
-            <Link href="/">
-              <a className="inline-flex w-12 h-12 shrink-0">
-                <img
-                  src="/logo.png"
-                  alt="Twitch Followings Logo"
-                  width="48"
-                  height="48"
-                />
-              </a>
+            <Link className="inline-flex w-12 h-12 shrink-0" href="/">
+              <img
+                src="/logo.png"
+                alt="Twitch Followings Logo"
+                width="48"
+                height="48"
+              />
             </Link>
 
             {/* SearchBar */}

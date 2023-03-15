@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Heading from "components/shared/ui/Heading";
+import Link from "next/link";
 import formatDate from "utils/formatDate";
 
 type UserFollowingItemProps = {
@@ -19,7 +20,7 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
   return (
     <article>
       <div className="overflow-hidden transition rounded-md ring-1 ring-transparent bg-slate-800 hover:ring-blue-400">
-        <a
+        <Link
           href={`https://twitch.tv/${data?.login}`}
           className="block w-full h-full"
           target="_blank"
@@ -41,7 +42,7 @@ const UserFollowingItem: React.FC<UserFollowingItemProps> = ({ data }) => {
               {formatDate(data?.followed_at as string)}
             </time>
           </div>
-        </a>
+        </Link>
       </div>
     </article>
   );

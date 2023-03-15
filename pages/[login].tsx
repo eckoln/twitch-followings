@@ -7,10 +7,20 @@ import UserFollowings from "components/UserFollowings";
 import UserProfileCard from "components/UserProfileCard";
 import { trpc } from "utils/trpc";
 import { useRouter } from "next/router";
+import blacklist from "blacklist.json";
 
 const UserProfile: NextPage = () => {
   const router = useRouter();
   const login = router.query.login as string;
+
+  if (blacklist.data.includes(login)) {
+    return (
+      <NextError
+        statusCode={400}
+        title="The ability to search for this user on this tool has been blocked"
+      />
+    );
+  }
 
   const user = trpc.users.show.useQuery({ login });
 

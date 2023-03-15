@@ -18,7 +18,7 @@ const Home = () => {
             </p>
             <SearchBar />
             <p className="text-sm font-medium">
-              Please do not use this service to be toxic to people.
+              Notice: Please do not use this service to be harassment to people.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Heading from "components/shared/ui/Heading";
+import Link from "next/link";
 import { User } from "types";
 
 type UserProfileCardProps = {
@@ -11,7 +12,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
   return (
     <div className="pb-6 border-b-2 border-slate-800">
       <div className="flex justify-center">
-        <a
+        <Link
           href={`https://twitch.tv/${user?.login}`}
           className="flex flex-col items-center space-y-4 group"
           target="_blank"
@@ -34,7 +35,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
             </Heading>
             <span className="text-gray-400">{`twitch.tv/${user?.login}`}</span>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );
