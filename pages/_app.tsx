@@ -1,4 +1,5 @@
 import "styles/tailwind.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import APP_SEO from "next-seo.config";
 import type { AppProps } from "next/app";
@@ -12,6 +13,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <GoogleAnalytics id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <DefaultSeo {...APP_SEO} />
       <Component {...pageProps} />
+      <Analytics />
     </>
   );
 };
