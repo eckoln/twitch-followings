@@ -1,3 +1,5 @@
+> Note: As of August 3/2023, this app will no longer work due to Twitch shutting down the [Get Users Follows](https://dev.twitch.tv/docs/api/reference/#get-users-follows) endpoint.
+
 <h2>Screenshots</h2>
 
 ###### Home
