@@ -23,7 +23,7 @@ const DeprecationNotice = () => {
   return (
     <div className="py-2.5 px-1.5 bg-red-900 text-white text-sm text-center font-bold">
       <span>
-        Important: Twitch Followings will no longer be supported in September/2023 due to Twitch's endpoint shutdown.{" "}
+        Important: Twitch Followings will no longer be supported in September/2023 due to Twitch&apos;s endpoint shutdown.{" "}
         <Link
           className="underline"
           href="https://discuss.dev.twitch.tv/t/legacy-follows-api-and-eventsub-shutdown-timeline-updated/46769#september-12-2023-5"
