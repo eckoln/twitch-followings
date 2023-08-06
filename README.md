@@ -1,4 +1,4 @@
-> Note: Twitch Followings will no longer be supported in September due to Twitch's endpoint shutdown. [More details.](https://discuss.dev.twitch.tv/t/legacy-follows-api-and-eventsub-shutdown-timeline-updated/46769#september-12-2023-5)
+> Note: Twitch Followings will no longer be supported in September/2023 due to Twitch's endpoint shutdown. [More details.](https://discuss.dev.twitch.tv/t/legacy-follows-api-and-eventsub-shutdown-timeline-updated/46769#september-12-2023-5)
 
 <h2>Screenshots</h2>
 
